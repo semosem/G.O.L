@@ -15,13 +15,50 @@ class App extends PureComponent {
         .map(() => Array(this.cols).fill(false))
     };
   }
-
+  componentDidMount() {
+    console.log("seed");
+    this.seed();
+  }
+  selectBox = (row, col) => {
+    const gridCopy = this.state.gridFull.map(item => {
+      return item;
+    });
+    gridCopy[row][col] = !gridCopy[row][col];
+    this.setState({
+      gridFull: gridCopy
+    });
+  };
+  seed = () => {
+    const gridCopy = this.state.gridFull.map(item => {
+      return item;
+    });
+    Array(this.rows)
+      .fill()
+      .forEach((item, i) => {
+        return Array(this.cols)
+          .fill()
+          .forEach((item, j) => {
+            if (Math.floor(Math.random() * 4) === 1) {
+              console.log("rand");
+              gridCopy[i][j] = true;
+            }
+          });
+      });
+    this.setState({
+      gridFull: gridCopy
+    });
+  };
   render() {
     const { gridFull } = this.state;
     return (
       <div className="main">
         <h1> Game of Life </h1>
-        <Grid gridFull={gridFull} rows={this.rows} cols={this.cols} />
+        <Grid
+          selectBox={this.selectBox}
+          gridFull={gridFull}
+          rows={this.rows}
+          cols={this.cols}
+        />{" "}
         <h3>Generation: {this.state.generation}</h3>
       </div>
     );
