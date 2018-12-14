@@ -7,9 +7,9 @@ class Box extends PureComponent {
     this.props.selectBox(this.props.row, this.props.col);
   };
   render() {
-    const { boxClass, id, selectBox } = this.props;
+    const { boxClass, id } = this.props;
 
-    return <div className={boxClass} id={id} onClick={selectBox} />;
+    return <div className={boxClass} id={id} onClick={this.selectBox} />;
   }
 }
 
