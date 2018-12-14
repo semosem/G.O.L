@@ -1,25 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { PureComponent } from "react";
+import Grid from "./components/Grid";
+import "./App.css";
 
-class App extends Component {
+class App extends PureComponent {
+  constructor() {
+    super();
+    this.speed = 100;
+    this.rows = 30;
+    this.cols = 50;
+    this.state = {
+      generation: 0,
+      gridFull: Array(this.rows)
+        .fill()
+        .map(() => Array(this.cols).fill(false))
+    };
+  }
+
   render() {
+    const { gridFull } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="main">
+        <h1> Game of Life </h1>
+        <Grid gridFull={gridFull} rows={this.rows} cols={this.cols} />
+        <h3>Generation: {this.state.generation}</h3>
       </div>
     );
   }
