@@ -4,7 +4,7 @@ import "../App.css";
 class Grid extends PureComponent {
   render() {
     console.log(this.props);
-    const width = this.props.cols * 14;
+    const width = this.props.cols * 16;
     const { rows, cols, gridFull, selectBox } = this.props;
     let rowsArray = [];
     let boxClass = "";
